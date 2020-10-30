@@ -14,6 +14,7 @@ function grocerySearch(search) {
     .from('shopping_list')
     .where('name', 'ILIKE', `%${search}%`)
     .then((result) => {
+      console.log('SEARCH TERM', { search });
       console.log(result);
     });
 }
@@ -40,12 +41,13 @@ function addedAfter(days) {
     .where(
       'date_added',
       '>',
+      // eslint-disable-next-line quotes
       knexInstance.raw(`now() - '?? days'::INTERVAL`, days)
     )
     .then((result) => console.log(result));
 }
 
-// addedAfter(12);
+addedAfter(12);
 
 function totalCost() {
   knexInstance
@@ -57,4 +59,4 @@ function totalCost() {
     .then((result) => console.log(result));
 }
 
-totalCost();
+// totalCost();

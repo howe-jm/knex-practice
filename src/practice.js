@@ -39,6 +39,7 @@ function mostPopularVideosForDays(days) {
     .where(
       'date_viewed',
       '>',
+      // eslint-disable-next-line quotes
       knexInstance.raw(`now() - '?? days'::INTERVAL`, days)
     )
     .from('whopipe_video_views')
